@@ -1,2 +1,1 @@
-# lvb
-linear search vs binary tree search
+# linear vs binary tree search
