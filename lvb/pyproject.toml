@@ -2,7 +2,7 @@
 name = "lvb"
 version = "0.1.0"
 description = ""
-authors = ["hemanialaparthi <alaparthi01@allegheny.edu>", ]
+authors = ["hemanialaparthi <alaparthi01@allegheny.edu>","duruakbas <akbas01@allegheny.edu>", "vivianpotts <potts01@allegheny.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
