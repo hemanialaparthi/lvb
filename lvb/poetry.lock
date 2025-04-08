@@ -17,6 +17,24 @@ tomli = ">=2.0.1"
 typing-extensions = ">=4.5.0"
 
 [[package]]
+name = "bintrees"
+version = "2.2.0"
+description = "Package provides Binary-, RedBlack- and AVL-Trees in Python and Cython."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "bintrees-2.2.0-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:fd447cf71e7a81073a91de75c56e7ca530fda563832b97d69fd882b9e0ef89b1"},
+    {file = "bintrees-2.2.0-cp36-cp36m-win_amd64.whl", hash = "sha256:bfbc4dd3181609120d20ee73247521a8549644d129cd61582a986b1ef0671bd4"},
+    {file = "bintrees-2.2.0-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:620b799e07849765a5107e56349a4c422576084c75323315690b2ac0cdf4a7e4"},
+    {file = "bintrees-2.2.0-cp37-cp37m-win_amd64.whl", hash = "sha256:72bc8e2a9322011d8983980df4ce8e729781ec1ae63b41b8ee5fa34b41adb0b2"},
+    {file = "bintrees-2.2.0-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:18e6a28b09c7821cc29d40d4192d6f051ad9e8febb5962b0c30829b6e3c6509a"},
+    {file = "bintrees-2.2.0-cp38-cp38-win_amd64.whl", hash = "sha256:5ac1a93476a5a84b20b2bd5fa43d486cd971ef9749b564eaf95c46244af02523"},
+    {file = "bintrees-2.2.0-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:0b1faf7c2d7d5c0ee367901268fa19ef80360cbb16e88d0a27ecab5eeb01bfac"},
+    {file = "bintrees-2.2.0-cp39-cp39-win_amd64.whl", hash = "sha256:01c1968027c4da0c54f185bde2b7043ae5a826c0edd1beaef57da9c6cbe4d475"},
+    {file = "bintrees-2.2.0.zip", hash = "sha256:e180658d90789855dcb0e7d1eb2bfebc452d60c5b48e74de16b502d61a8352d1"},
+]
+
+[[package]]
 name = "certifi"
 version = "2025.1.31"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -918,4 +936,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f25d0743cb90f8e91a88464fbae0a351212cfb464ef5fa2e0f54536e7fac6e3e"
+content-hash = "12fefca7d2229f4153a3b68e793db5e76dbeb8b8770ed88b6e2e627d36a41c1f"
