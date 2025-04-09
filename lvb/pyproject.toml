@@ -5,6 +5,9 @@ description = ""
 authors = ["hemanialaparthi <alaparthi01@allegheny.edu>","duruakbas <akbas01@allegheny.edu>", "vivianpotts <potts01@allegheny.edu>"]
 readme = "README.md"
 
+[tool.poetry.scripts]
+lvb = "lvb.main:cli"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 rich = "^10.9.0"
