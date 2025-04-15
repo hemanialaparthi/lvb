@@ -1,5 +1,6 @@
 """Linear search implementation."""
-from typing import List, Any, Optional
+
+from typing import Any, List, Optional
 
 
 def linear_search(dataset: List[Any], target: Any) -> Optional[int]:

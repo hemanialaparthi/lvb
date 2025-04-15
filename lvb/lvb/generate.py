@@ -1,40 +1,38 @@
 """Generate test data for search benchmarking."""
+
 import random
 import string
-from typing import List, Any, Tuple, Optional
+from typing import Any, List
 
 from lvb.approach import DataType, TargetPosition
-from lvb.constants import constants
 from lvb.bst import BinarySearchTree
+from lvb.constants import constants
 
 
 def generate_random_integer() -> int:
     """Generate a random integer within the specified range."""
-    return random.randint(
-        constants.RANDOM_INT_MIN,
-        constants.RANDOM_INT_MAX
-    )
+    return random.randint(constants.RANDOM_INT_MIN, constants.RANDOM_INT_MAX)
 
 
 def generate_random_float() -> float:
     """Generate a random float within the specified range."""
     return random.uniform(
-        constants.RANDOM_FLOAT_MIN, 
-        constants.RANDOM_FLOAT_MAX
+        constants.RANDOM_FLOAT_MIN, constants.RANDOM_FLOAT_MAX
     )
 
 
 def generate_random_string() -> str:
     """Generate a random string of specified length."""
-    return ''.join(
+    return "".join(
         random.choices(
-            string.ascii_letters + string.digits, 
-            k=constants.STRING_LENGTH
+            string.ascii_letters + string.digits, k=constants.STRING_LENGTH
         )
     )
 
 
-def generate_dataset(size: int, data_type: DataType, sorted_data: bool = False) -> List[Any]:
+def generate_dataset(
+    size: int, data_type: DataType, sorted_data: bool = False
+) -> List[Any]:
     """Generate a dataset of the specified size and type.
 
     Args:
@@ -100,72 +98,79 @@ def select_targets(
     dataset: List[Any],
     position: TargetPosition,
     num_targets: int,
-    data_type: DataType  # Add data_type parameter
+    data_type: DataType,
 ) -> List[Any]:
-    """Select target elements from the dataset based on position.
-
-    Args:
-        dataset: Dataset to select targets from
-        position: Where in the dataset to select targets from
-        num_targets: Number of targets to select
-        data_type: Type of data to generate for NONEXISTENT targets
-
-    Returns:
-        List: Selected target elements
-    """
+    """Select target elements from the dataset based on position."""
     size = len(dataset)
-    targets = []
-
     if size == 0:
-        return targets
+        return []
 
+    if position == TargetPosition.NONEXISTENT:
+        return _generate_nonexistent_targets(dataset, num_targets, data_type)
+
+    return _select_existing_targets(dataset, position, num_targets)
+
+
+def _select_existing_targets(
+    dataset: List[Any], position: TargetPosition, num_targets: int
+) -> List[Any]:
+    """Helper function to select existing targets based on position."""
+    size = len(dataset)
     if position == TargetPosition.BEGINNING:
-        # Select from the first 10% of elements
         end_idx = max(1, int(size * 0.1))
-        targets = random.choices(dataset[:end_idx], k=num_targets)
+        return random.choices(dataset[:end_idx], k=num_targets)
 
-    elif position == TargetPosition.MIDDLE:
-        # Select from the middle 10% of elements
+    if position == TargetPosition.MIDDLE:
         start_idx = int(size * 0.45)
         end_idx = int(size * 0.55)
         segment = dataset[start_idx:end_idx]
-        targets = random.choices(segment, k=num_targets) if segment else []
+        return random.choices(segment, k=num_targets) if segment else []
 
-    elif position == TargetPosition.END:
-        # Select from the last 10% of elements
+    if position == TargetPosition.END:
         start_idx = int(size * 0.9)
-        targets = random.choices(dataset[start_idx:], k=num_targets)
+        return random.choices(dataset[start_idx:], k=num_targets)
 
-    elif position == TargetPosition.RANDOM:
-        # Select random elements from the entire dataset
-        targets = random.choices(dataset, k=num_targets)
+    if position == TargetPosition.RANDOM:
+        return random.choices(dataset, k=num_targets)
 
-    elif position == TargetPosition.NONEXISTENT:
-        # Generate values guaranteed not to be in the dataset
-        if not dataset:
-            # Generate based on data_type
-            if data_type == DataType.INTEGERS:
-                targets = [constants.RANDOM_INT_MAX + i + 1 for i in range(num_targets)]
-            elif data_type == DataType.FLOATS:
-                targets = [constants.RANDOM_FLOAT_MAX + i + 1.0 for i in range(num_targets)]
-            elif data_type == DataType.STRINGS:
-                targets = [''.join(random.choices(
-                    string.ascii_letters + string.digits, 
-                    k=constants.STRING_LENGTH + 10
-                )) for _ in range(num_targets)]
-        else:
-            # Find the max value and generate larger values
-            max_val = max(dataset)
+    return []
 
-            if isinstance(max_val, int):
-                targets = [max_val + i + 1 for i in range(num_targets)]
-            elif isinstance(max_val, float):
-                targets = [max_val + i + 1.0 for i in range(num_targets)]
-            else:  # String
-                # Generate longer strings
-                targets = [''.join(random.choices(
-                    string.ascii_letters + string.digits, 
-                    k=len(max_val) + 5
-                )) for _ in range(num_targets)]
 
-    return targets
+def _generate_nonexistent_targets(
+    dataset: List[Any], num_targets: int, data_type: DataType
+) -> List[Any]:
+    """Helper function to generate nonexistent targets."""
+    if not dataset:
+        if data_type == DataType.INTEGERS:
+            return [
+                constants.RANDOM_INT_MAX + i + 1 for i in range(num_targets)
+            ]
+        if data_type == DataType.FLOATS:
+            return [
+                constants.RANDOM_FLOAT_MAX + i + 1.0
+                for i in range(num_targets)
+            ]
+        if data_type == DataType.STRINGS:
+            return [
+                "".join(
+                    random.choices(
+                        string.ascii_letters + string.digits,
+                        k=constants.STRING_LENGTH + 10,
+                    )
+                )
+                for _ in range(num_targets)
+            ]
+
+    max_val = max(dataset)
+    if isinstance(max_val, int):
+        return [max_val + i + 1 for i in range(num_targets)]
+    if isinstance(max_val, float):
+        return [max_val + i + 1.0 for i in range(num_targets)]
+    return [
+        "".join(
+            random.choices(
+                string.ascii_letters + string.digits, k=len(max_val) + 5
+            )
+        )
+        for _ in range(num_targets)
+    ]

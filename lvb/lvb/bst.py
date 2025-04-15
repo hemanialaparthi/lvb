@@ -12,6 +12,7 @@ class Node:
 
 class BinarySearchTree:
     """Initializing the BST."""
+
     def __init__(self):
         self.root = None
 

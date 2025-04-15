@@ -1,6 +1,6 @@
 """Run a benchmark on search operations."""
-import timeit
-from typing import Callable, Any, List
+
+from typing import Any, Callable, List
 
 
 def benchmark(func: Callable, *args, **kwargs) -> float:
@@ -21,10 +21,7 @@ def benchmark(func: Callable, *args, **kwargs) -> float:
 
 
 def benchmark_search(
-    search_func: Callable,
-    dataset: List[Any],
-    targets: List[Any],
-    **kwargs
+    search_func: Callable, dataset: List[Any], targets: List[Any], **kwargs
 ) -> float:
     """Benchmark a search function with multiple targets.
 

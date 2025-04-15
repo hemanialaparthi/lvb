@@ -1,6 +1,6 @@
 """Binary search implementations (iterative and recursive)."""
 
-from typing import List, Any, Optional
+from typing import Any, List, Optional
 
 
 def binary_search_iterative(dataset: List[Any], target: Any) -> Optional[int]:
@@ -19,10 +19,7 @@ def binary_search_iterative(dataset: List[Any], target: Any) -> Optional[int]:
 
 
 def binary_search_recursive(
-    dataset: List[Any],
-    target: Any,
-    left: int = 0,
-    right: Optional[int] = None
+    dataset: List[Any], target: Any, left: int = 0, right: Optional[int] = None
 ) -> Optional[int]:
     """Perform a recursive binary search on the dataset.
 
