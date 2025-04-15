@@ -41,5 +41,3 @@ This project benchmarks the performance of various search algorithms, including 
 ```bash
    poetry install
 ```
-
-
