@@ -48,7 +48,7 @@ def benchmark_search(
     if not callable(search_func):
         raise ValueError("The provided `search_func` must be callable.")
 
-    # Measure the time to find all targets
+    # measure the time to find all targets
     def search_all_targets():
         for target in targets:
             search_func(dataset, target, **kwargs)
