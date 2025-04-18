@@ -22,6 +22,7 @@ def benchmark(func: Callable, *args, **kwargs) -> float:
         raise ValueError("The provided `func` must be callable.")
 
     def wrapped_func():
+        """Wrap the function call for timeit."""
         func(*args, **kwargs)
 
     execution_time = timeit.timeit(wrapped_func, number=1000)
