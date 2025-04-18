@@ -18,15 +18,15 @@ def benchmark(func: Callable, *args, **kwargs) -> float:
     Raises:
         ValueError: If the provided `func` is not callable.
     """
-    if not callable(func):
-        raise ValueError("The provided `func` must be callable.")
+    if not callable(func):  # Check if func is callable
+        raise ValueError("The provided `func` must be callable.")  # raise ValueError
 
     def wrapped_func():
         """Wrap the function call for timeit."""
-        func(*args, **kwargs)
+        func(*args, **kwargs)  # Call the function with arguments
 
-    execution_time = timeit.timeit(wrapped_func, number=1000)
-    return execution_time / 1000
+    execution_time = timeit.timeit(wrapped_func, number=1000)  # Measure execution time
+    return execution_time / 1000 # Average over 1000 runs
 
 
 def benchmark_search(
@@ -46,12 +46,11 @@ def benchmark_search(
     Raises:
         ValueError: If the provided `search_func` is not callable.
     """
-    if not callable(search_func):
-        raise ValueError("The provided `search_func` must be callable.")
+    if not callable(search_func):  # Check if search_func is callable
+        raise ValueError("The provided `search_func` must be callable.")  # raise ValueError
 
     # measure the time to find all targets
-    def search_all_targets():
-        for target in targets:
-            search_func(dataset, target, **kwargs)
-
-    return benchmark(search_all_targets)
+    def search_all_targets():  # Define a function to search all targets
+        for target in targets:  # Iterate through each target
+            search_func(dataset, target, **kwargs)  # Call the search function
+    return benchmark(search_all_targets)  # Measure the average execution time
