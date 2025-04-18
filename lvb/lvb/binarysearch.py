@@ -15,7 +15,16 @@ def binary_search_iterative(dataset: List[Any], target: Any) -> Optional[int]:
     Returns:
         int: Index of the target element, or None if not found
     """
-    # TODO: Will
+    left, right = 0, len(dataset) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if dataset[mid] == target:
+            return mid
+        elif dataset[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return None
 
 
 def binary_search_recursive(
@@ -34,4 +43,15 @@ def binary_search_recursive(
     Returns:
         int: Index of the target element, or None if not found
     """
-    # TODO: Will
+    if right is None:
+        right = len(dataset) - 1
+    if left > right:
+        return None
+
+    mid = (left + right) // 2
+    if dataset[mid] == target:
+        return mid
+    elif dataset[mid] < target:
+        return binary_search_recursive(dataset, target, mid + 1, right)
+    else:
+        return binary_search_recursive(dataset, target, left, mid - 1)
