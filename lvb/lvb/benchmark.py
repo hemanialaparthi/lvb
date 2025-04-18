@@ -1,5 +1,6 @@
 """Run a benchmark on search operations."""
 
+import timeit
 from typing import Any, Callable, List
 
 
@@ -17,7 +18,14 @@ def benchmark(func: Callable, *args, **kwargs) -> float:
     Raises:
         ValueError: If the provided `func` is not callable.
     """
-    # TODO for Vivian: Complete this function
+    if not callable(func):
+        raise ValueError("The provided `func` must be callable.")
+
+    def wrapped_func():
+        func(*args, **kwargs)
+
+    execution_time = timeit.timeit(wrapped_func, number=1000)
+    return execution_time / 1000
 
 
 def benchmark_search(
