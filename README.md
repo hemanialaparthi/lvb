@@ -14,6 +14,10 @@ This project benchmarks the performance of various search algorithms, including 
   - Binary Search Tree Search
 - Configurable dataset size, number of runs, and target selection.
 
+## Blog Post
+
+If you are interested in our findings, please feel free to read our blog post: [How do linear search, binary search, and balanced BSTs compare in runtime efficiency across varying dataset sizes and target positions?](https://algorithmology.org/allhands/spring2025/weeksixteen/teamtwo/)
+
 ## Requirements
 
 - Python 3.8 or higher
